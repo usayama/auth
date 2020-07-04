@@ -17,8 +17,8 @@ const Authentication: React.FC<AuthenticationProps> = props => {
     })
   }
 
-  async function facebookSignIn() {
-    const provider = new firebase.auth.FacebookAuthProvider()
+  async function googleSignIn() {
+    const provider = new firebase.auth.GoogleAuthProvider()
     await callbackSignIn(provider)
   }
 
@@ -34,7 +34,7 @@ const Authentication: React.FC<AuthenticationProps> = props => {
     return (
       <section>
         <div>
-          <button onClick={facebookSignIn}>Facebookでログイン</button>
+          <button onClick={googleSignIn}>Googleでログイン</button>
         </div>
       </section>
     )
