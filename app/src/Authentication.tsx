@@ -17,8 +17,8 @@ const Authentication: React.FC<AuthenticationProps> = ({ user, setUser }) => {
     })
   }
 
-  async function githubSignIn() {
-    const provider = new firebase.auth.GithubAuthProvider()
+  async function facebookSignIn() {
+    const provider = new firebase.auth.FacebookAuthProvider()
     await callbackSignIn(provider)
   }
 
@@ -34,7 +34,7 @@ const Authentication: React.FC<AuthenticationProps> = ({ user, setUser }) => {
     return (
       <section>
         <div>
-          <button onClick={githubSignIn}>githubでログイン</button>
+          <button onClick={facebookSignIn}>Facebookでログイン</button>
         </div>
       </section>
     )
