@@ -17,8 +17,8 @@ const Authentication: React.FC<AuthenticationProps> = ({ user, setUser }) => {
     })
   }
 
-  async function facebookSignIn() {
-    const provider = new firebase.auth.FacebookAuthProvider()
+  async function twitterSignIn() {
+    const provider = new firebase.auth.TwitterAuthProvider()
     await callbackSignIn(provider)
   }
 
@@ -34,7 +34,7 @@ const Authentication: React.FC<AuthenticationProps> = ({ user, setUser }) => {
     return (
       <section>
         <div>
-          <button onClick={facebookSignIn}>Facebookでログイン</button>
+          <button onClick={twitterSignIn}>Twitterでログイン</button>
         </div>
       </section>
     )

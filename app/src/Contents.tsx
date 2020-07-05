@@ -5,6 +5,8 @@ type ContentsProps = {
 }
 
 const Contents: React.FC<ContentsProps> = ({ user }) => {
+  console.log(user)
+
   if (user) {
     return (
       <main>
