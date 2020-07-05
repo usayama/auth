@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { auth } from './firebase'
-import Contents from './Contents'
+import { UserContext } from './contexts'
 import Authentication from './Authentication'
+import Contents from './Contents'
 import './App.css'
 
 const App: React.FC = () => {
   const [user, setUser] = useState<firebase.User | null>(null)
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      user && setUser(user)
+    auth.onAuthStateChanged(firebaseUser => {
+      firebaseUser && setUser(firebaseUser)
     })
   }, [])
 
   return (
     <div className="App">
-      <Authentication user={user} setUser={setUser} />
-      <Contents user={user} />
+      <UserContext.Provider value={{ user, setUser }}>
+        <Authentication />
+        <Contents />
+      </UserContext.Provider>
     </div>
   )
 }

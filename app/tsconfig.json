@@ -20,7 +20,8 @@
     // "strictNullChecks": false,
     // "strictFunctionTypes": false,
     // "strictPropertyInitialization": false,
-    "strict": true
+    "strict": true,
+    "baseUrl": "src"
   },
   "include": ["src"]
 }

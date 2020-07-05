@@ -1,11 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from 'contexts'
 
-type ContentsProps = {
-  user: firebase.User | null
-}
-
-const Contents: React.FC<ContentsProps> = ({ user }) => {
-  console.log(user)
+const Contents: React.FC = () => {
+  const user = useContext(UserContext).user
 
   if (user) {
     return (

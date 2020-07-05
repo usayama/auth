@@ -1,12 +1,11 @@
-import React, { Dispatch } from 'react'
+import React, { useContext } from 'react'
 import firebase, { auth } from './firebase'
+import { UserContext } from './contexts'
 
-type AuthenticationProps = {
-  user: firebase.User | null
-  setUser: Dispatch<firebase.User | null>
-}
+const Authentication: React.FC = () => {
+  const user = useContext(UserContext).user
+  const setUser = useContext(UserContext).setUser
 
-const Authentication: React.FC<AuthenticationProps> = ({ user, setUser }) => {
   async function callbackSignIn(provider: firebase.auth.AuthProvider) {
     if (user) {
       return
