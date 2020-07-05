@@ -6,9 +6,9 @@ type AuthenticationProps = {
   setUser: Dispatch<firebase.User | null>
 }
 
-const Authentication: React.FC<AuthenticationProps> = props => {
+const Authentication: React.FC<AuthenticationProps> = ({ user, setUser }) => {
   async function callbackSignIn(provider: firebase.auth.AuthProvider) {
-    if (props.user) {
+    if (user) {
       return
     }
     await auth.signInWithPopup(provider).catch(error => {
@@ -27,10 +27,10 @@ const Authentication: React.FC<AuthenticationProps> = props => {
       console.log(error.log)
       console.log(error.message)
     })
-    props.setUser(null)
+    setUser(null)
   }
 
-  if (!props.user) {
+  if (!user) {
     return (
       <section>
         <div>
