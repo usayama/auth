@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { auth } from './firebase'
-import { UserContext } from './contexts'
-import Authentication from './Authentication'
-import Contents from './Contents'
+import firebase, { auth } from './firebase'
+import { UserContext } from 'contexts'
+import Authentication from 'Authentication'
+import Contents from 'Contents'
 import './App.css'
 
 const App: React.FC = () => {
@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged(firebaseUser => {
-      firebaseUser && setUser(firebaseUser)
+      setUser(firebaseUser)
     })
   }, [])
 

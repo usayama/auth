@@ -3,10 +3,11 @@ import { UserContext } from 'contexts'
 
 const Contents: React.FC = () => {
   const user = useContext(UserContext).user
+  const icon400x400 = user && user.photoURL?.replace('normal', '200x200')
 
   if (user) {
     return (
-      <main>
+      <div>
         <dl>
           <dt>uid</dt>
           <dd>{user.uid}</dd>
@@ -34,7 +35,7 @@ const Contents: React.FC = () => {
         <dl>
           <dt>photo</dt>
           <dd>
-            <img src={user.photoURL || undefined} width="144" alt="" />
+            <img src={icon400x400 || undefined} width="144" alt="" />
           </dd>
         </dl>
         <dl>
@@ -55,16 +56,12 @@ const Contents: React.FC = () => {
         </dl>
         <dl>
           <dt>providerId</dt>
-          <dd>{user.providerData.map(p => p?.providerId)}</dd>
+          <dd>{user.providerData[0] && user.providerData[0].providerId}</dd>
         </dl>
-      </main>
+      </div>
     )
   } else {
-    return (
-      <main>
-        <div>ログインしていません</div>
-      </main>
-    )
+    return <div>ログインしていません</div>
   }
 }
 
