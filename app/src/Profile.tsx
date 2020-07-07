@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from 'contexts'
 
-const Contents: React.FC = () => {
+const Profile: React.FC = () => {
   const user = useContext(UserContext).user
   const icon400x400 = user && user.photoURL?.replace('normal', '200x200')
 
@@ -65,4 +65,4 @@ const Contents: React.FC = () => {
   }
 }
 
-export default Contents
+export default Profile

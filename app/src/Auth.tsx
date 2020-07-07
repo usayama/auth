@@ -4,7 +4,7 @@ import { UserContext } from 'contexts'
 import * as firebaseui from 'firebaseui'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
-const Authentication: React.FC = () => {
+const Auth: React.FC = () => {
   const user = useContext(UserContext).user
 
   const uiConfig = {
@@ -63,4 +63,4 @@ const Authentication: React.FC = () => {
   }
 }
 
-export default Authentication
+export default Auth
