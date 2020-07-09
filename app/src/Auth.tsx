@@ -3,12 +3,15 @@ import firebase, { auth } from './firebase'
 import { UserContext } from 'contexts'
 import * as firebaseui from 'firebaseui'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import { LoginAnonymously } from 'LoginAnonymously'
+import Logout from 'Logout'
 
 const Auth: React.FC = () => {
   const user = useContext(UserContext).user
 
   const uiConfig = {
-    signInSuccessUrl: '/',
+    signInSuccessUrl: '/Auth',
+    signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
       firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
@@ -44,20 +47,17 @@ const Auth: React.FC = () => {
     }
   }
 
-  const signOUt = () => {
-    auth.signOut()
-  }
-
   if (!user) {
     return (
       <div>
+        <LoginAnonymously />
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     )
   } else {
     return (
       <div>
-        <button onClick={signOUt}>ログアウト</button>
+        <Logout />
       </div>
     )
   }
