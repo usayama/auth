@@ -26,9 +26,6 @@ const Auth: React.FC = () => {
         if (authResult.user?.isAnonymous) {
           return false
         }
-        if (authResult.additionalUserInfo?.providerId === 'twitter.com') {
-          return false
-        }
         if (authResult.user?.emailVerified) {
           return false
         }
