@@ -13,13 +13,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    // "noImplicitAny": false,
-    // "noImplicitThis": false,
-    // "alwaysStrict": false,
-    // "strictBindCallApply": false,
-    // "strictNullChecks": false,
-    // "strictFunctionTypes": false,
-    // "strictPropertyInitialization": false,
     "strict": true,
     "baseUrl": "src"
   },
