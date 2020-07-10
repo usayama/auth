@@ -14,7 +14,6 @@ const Auth: React.FC = () => {
     signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
-      firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
@@ -23,9 +22,6 @@ const Auth: React.FC = () => {
     ],
     callbacks: {
       signInSuccessWithAuthResult: (authResult: firebase.auth.UserCredential) => {
-        if (authResult.user?.isAnonymous) {
-          return false
-        }
         if (authResult.user?.emailVerified) {
           return false
         }
