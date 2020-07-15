@@ -2,7 +2,7 @@ import React from 'react'
 
 const Terms: React.FC = () => {
   return (
-    <main>
+    <article>
       <section>
         <h1>利用規約</h1>
         <p>
@@ -156,7 +156,7 @@ const Terms: React.FC = () => {
       <section>
         <p>以上</p>
       </section>
-    </main>
+    </article>
   )
 }
 

@@ -7,7 +7,7 @@ const style = css({
 
 const Privacy: React.FC = () => {
   return (
-    <main className="Privacy">
+    <article className="Privacy">
       <section css={style}>
         <h1>プライバシーポリシー</h1>
         <p>
@@ -133,7 +133,7 @@ const Privacy: React.FC = () => {
             <dd>example.com</dd>
           </dl> */}
       </section>
-    </main>
+    </article>
   )
 }
 

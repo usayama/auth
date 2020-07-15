@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
+
 import firebase, { auth } from './firebase'
 import { UserContext } from 'contexts'
-import Home from 'Pages/Home'
-import Auth from 'Pages/Auth'
-import Profile from 'Pages/Profile'
-import Terms from 'Pages/Terms'
-import Privacy from 'Pages/Privacy'
-import 'tailwind.css'
+import { css } from '@emotion/core'
+
+import Navigation from 'Components/Navigation'
+import Header from 'Components/Header'
+import Main from 'Components/Main'
+import Footer from 'Components/Footer'
+
+const app = css({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  minHeight: '100vh',
+  main: {
+    flex: 'auto'
+  }
+})
 
 const App: React.FC = () => {
   const [user, setUser] = useState<firebase.User | null>(null)
@@ -19,33 +29,12 @@ const App: React.FC = () => {
   }, [])
 
   return (
-    <div className="App">
-      <nav>
-        <div>
-          <Link to="/">Home</Link>
-        </div>
-        <div>
-          <Link to="Auth">Auth</Link>
-        </div>
-        <div>
-          <Link to="Profile">Profile</Link>
-        </div>
-        <div>
-          <Link to="Terms">Terms</Link>
-        </div>
-        <div>
-          <Link to="Privacy">Privacy</Link>
-        </div>
-      </nav>
+    <div css={app}>
       <UserContext.Provider value={{ user, setUser }}>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/Auth" component={Auth} />
-          <Route path="/Profile" component={Profile} />
-          <Route path="/Terms" component={Terms} />
-          <Route path="/Privacy" component={Privacy} />
-          <Route render={() => 'NotFound'} />
-        </Switch>
+        <Header />
+        <Navigation />
+        <Main />
+        <Footer />
       </UserContext.Provider>
     </div>
   )
