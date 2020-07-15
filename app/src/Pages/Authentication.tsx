@@ -5,6 +5,7 @@ import * as firebaseui from 'firebaseui'
 import { css } from '@emotion/core'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import LoginAnonymously from 'Components/LoginAnonymously'
+import SignInWithGoogle from 'Components/SignInWithGoogle'
 import Logout from 'Components/Logout'
 
 const authentication = css({
@@ -17,6 +18,13 @@ const authentication = css({
   borderRadius: '8px'
 })
 
+export const callbackSignIn = (provider: firebase.auth.AuthProvider) => {
+  auth.signInWithPopup(provider).catch(error => {
+    console.log(error.log)
+    console.log(error.message)
+  })
+}
+
 const Authentication: React.FC = () => {
   const user = useContext(UserContext).user
 
@@ -25,11 +33,10 @@ const Authentication: React.FC = () => {
     signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     callbacks: {
       signInSuccessWithAuthResult: (authResult: firebase.auth.UserCredential) => {
@@ -55,6 +62,7 @@ const Authentication: React.FC = () => {
     return (
       <div css={authentication}>
         <LoginAnonymously />
+        <SignInWithGoogle />
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     )

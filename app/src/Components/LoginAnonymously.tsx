@@ -12,10 +12,10 @@ const style = css({
   minHeight: '40px',
   border: 'none',
   color: '#fff',
-  fontSize: '14px',
+  fontSize: '13px',
   fontWeight: 'bold',
   borderRadius: '2px',
-  boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2)',
+  boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
   outline: 'none',
   cursor: 'pointer',
   span: {
@@ -34,7 +34,7 @@ const LoginAnonymously: React.FC = () => {
   return (
     <button css={style} onClick={loginAnonymously}>
       <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/anonymous.png" width="18" height="18" alt="" />
-      <span>とくめいでログイン</span>
+      <span>匿名でログイン</span>
     </button>
   )
 }
