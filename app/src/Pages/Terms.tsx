@@ -1,8 +1,30 @@
 import React from 'react'
+import { css } from '@emotion/core'
+
+const terms = css({
+  maxWidth: '800px',
+  margin: '0 auto',
+  section: {
+    marginBottom: '32px'
+  },
+  h1: {
+    marginTop: '16px',
+    marginBottom: '48px',
+    fontSize: '40px',
+    textAlign: 'center'
+  },
+  h2: {
+    marginBottom: '16px',
+    fontSize: '24px'
+  },
+  p: {
+    lineHeight: '1.8'
+  }
+})
 
 const Terms: React.FC = () => {
   return (
-    <article>
+    <article css={terms}>
       <section>
         <h1>利用規約</h1>
         <p>

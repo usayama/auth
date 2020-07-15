@@ -2,11 +2,22 @@ import React, { useContext } from 'react'
 import firebase, { auth } from '../firebase'
 import { UserContext } from 'contexts'
 import * as firebaseui from 'firebaseui'
+import { css } from '@emotion/core'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import LoginAnonymously from 'Components/LoginAnonymously'
 import Logout from 'Components/Logout'
 
-const Auth: React.FC = () => {
+const authentication = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  width: '284px',
+  margin: '0 auto',
+  padding: '32px 0 17px',
+  borderRadius: '8px'
+})
+
+const Authentication: React.FC = () => {
   const user = useContext(UserContext).user
 
   const uiConfig = {
@@ -42,7 +53,7 @@ const Auth: React.FC = () => {
 
   if (!user) {
     return (
-      <div>
+      <div css={authentication}>
         <LoginAnonymously />
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
@@ -56,4 +67,4 @@ const Auth: React.FC = () => {
   }
 }
 
-export default Auth
+export default Authentication

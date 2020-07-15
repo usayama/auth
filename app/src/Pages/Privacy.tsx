@@ -1,14 +1,31 @@
 import React from 'react'
 import { css } from '@emotion/core'
 
-const style = css({
-  color: 'red'
+const privacy = css({
+  maxWidth: '800px',
+  margin: '0 auto',
+  section: {
+    marginBottom: '32px'
+  },
+  h1: {
+    marginTop: '16px',
+    marginBottom: '48px',
+    fontSize: '40px',
+    textAlign: 'center'
+  },
+  h2: {
+    marginBottom: '16px',
+    fontSize: '24px'
+  },
+  p: {
+    lineHeight: '1.8'
+  }
 })
 
 const Privacy: React.FC = () => {
   return (
-    <article className="Privacy">
-      <section css={style}>
+    <article css={privacy}>
+      <section>
         <h1>プライバシーポリシー</h1>
         <p>
           Underflow（以下、「当サイト」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。

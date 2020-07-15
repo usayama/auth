@@ -9,8 +9,8 @@ const navigation = css({
   height: '56px',
   background: '#eee',
   li: {
-    marginLeft: '8px',
-    marginRight: '8px'
+    marginLeft: '16px',
+    marginRight: '16px'
   }
 })
 
@@ -22,16 +22,7 @@ const Navigation: React.FC = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="Auth">Auth</Link>
-        </li>
-        <li>
           <Link to="Profile">Profile</Link>
-        </li>
-        <li>
-          <Link to="Terms">Terms</Link>
-        </li>
-        <li>
-          <Link to="Privacy">Privacy</Link>
         </li>
       </ul>
     </nav>
