@@ -1,7 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import { css } from '@emotion/core'
-import { callbackSignIn } from 'Pages/Authentication'
+import { signInWithPopup } from 'Pages/Authentication'
 
 const style = css({
   display: 'inline-flex',
@@ -25,9 +25,9 @@ const style = css({
   }
 })
 
-const signInWithGoogle = () => {
+export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider()
-  callbackSignIn(provider)
+  signInWithPopup(provider)
 }
 
 const SignInWithGoogle = () => {

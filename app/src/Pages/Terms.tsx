@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/core'
 
-const terms = css({
+const style = css({
   maxWidth: '800px',
   margin: '0 auto',
   section: {
@@ -24,7 +24,7 @@ const terms = css({
 
 const Terms: React.FC = () => {
   return (
-    <article css={terms}>
+    <article css={style}>
       <section>
         <h1>利用規約</h1>
         <p>

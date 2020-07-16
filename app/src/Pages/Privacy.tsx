@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/core'
 
-const privacy = css({
+const style = css({
   maxWidth: '800px',
   margin: '0 auto',
   section: {
@@ -24,7 +24,7 @@ const privacy = css({
 
 const Privacy: React.FC = () => {
   return (
-    <article css={privacy}>
+    <article css={style}>
       <section>
         <h1>プライバシーポリシー</h1>
         <p>

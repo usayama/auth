@@ -2,11 +2,10 @@ import React from 'react'
 import { css } from '@emotion/core'
 import { Link } from 'react-router-dom'
 
-const footer = css({
+const style = css({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-
   color: '#fff',
   background: '#666',
   ul: {
@@ -33,7 +32,7 @@ const footer = css({
 
 const Footer: React.FC = () => {
   return (
-    <footer css={footer}>
+    <footer css={style}>
       <ul>
         <li>
           <Link to="Terms">利用規約</Link>

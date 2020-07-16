@@ -23,20 +23,20 @@ const style = css({
   }
 })
 
-export const loginAnonymously = () => {
+export const signInAnonymously = () => {
   auth.signInAnonymously().catch(error => {
     console.log(error.code)
     console.log(error.message)
   })
 }
 
-const LoginAnonymously: React.FC = () => {
+const SignInAnonymously: React.FC = () => {
   return (
-    <button css={style} onClick={loginAnonymously}>
+    <button css={style} onClick={signInAnonymously}>
       <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/anonymous.png" width="18" height="18" alt="" />
       <span>匿名でログイン</span>
     </button>
   )
 }
 
-export default LoginAnonymously
+export default SignInAnonymously

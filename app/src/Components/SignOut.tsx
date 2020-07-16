@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { auth } from '../firebase'
 import { UserContext } from 'contexts'
 
-export const useLogout = () => {
+export const useSignOut = () => {
   const user = useContext(UserContext).user
 
   return () => {
@@ -17,8 +17,8 @@ export const useLogout = () => {
   }
 }
 
-const Logout: React.FC = () => {
-  return <button onClick={useLogout()}>ログアウト</button>
+const SignOut: React.FC = () => {
+  return <button onClick={useSignOut()}>ログアウト</button>
 }
 
-export default Logout
+export default SignOut

@@ -4,11 +4,11 @@ import { UserContext } from 'contexts'
 import * as firebaseui from 'firebaseui'
 import { css } from '@emotion/core'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import LoginAnonymously from 'Components/LoginAnonymously'
+import SignInAnonymously from 'Components/SignInAnonymously'
 import SignInWithGoogle from 'Components/SignInWithGoogle'
-import Logout from 'Components/Logout'
+import SignOut from 'Components/SignOut'
 
-const authentication = css({
+const style = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -18,7 +18,7 @@ const authentication = css({
   borderRadius: '8px'
 })
 
-export const callbackSignIn = (provider: firebase.auth.AuthProvider) => {
+export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
   auth.signInWithPopup(provider).catch(error => {
     console.log(error.log)
     console.log(error.message)
@@ -60,8 +60,8 @@ const Authentication: React.FC = () => {
 
   if (!user) {
     return (
-      <div css={authentication}>
-        <LoginAnonymously />
+      <div css={style}>
+        <SignInAnonymously />
         <SignInWithGoogle />
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
@@ -69,7 +69,7 @@ const Authentication: React.FC = () => {
   } else {
     return (
       <div>
-        <Logout />
+        <SignOut />
       </div>
     )
   }

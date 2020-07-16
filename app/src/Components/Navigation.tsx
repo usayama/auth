@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { css } from '@emotion/core'
 
-const navigation = css({
+const style = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -17,7 +17,7 @@ const navigation = css({
 const Navigation: React.FC = () => {
   return (
     <nav>
-      <ul css={navigation}>
+      <ul css={style}>
         <li>
           <Link to="/">Home</Link>
         </li>

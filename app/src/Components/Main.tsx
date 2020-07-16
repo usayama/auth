@@ -7,13 +7,13 @@ import Profile from 'Pages/Profile'
 import Terms from 'Pages/Terms'
 import Privacy from 'Pages/Privacy'
 
-const main = css({
+const style = css({
   padding: '32px'
 })
 
 const Main: React.FC = () => {
   return (
-    <main css={main}>
+    <main css={style}>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Authentication" component={Authentication} />
