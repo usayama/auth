@@ -8,7 +8,7 @@ const style = css({
   padding: '0 16px',
   background: '#f4b400',
   width: '100%',
-  maxWidth: '203px',
+  maxWidth: '232px',
   minHeight: '40px',
   border: 'none',
   color: '#fff',

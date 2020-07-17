@@ -9,7 +9,7 @@ const style = css({
   padding: '0 16px',
   marginTop: '16px',
   width: '100%',
-  maxWidth: '203px',
+  maxWidth: '232px',
   minHeight: '40px',
   color: '#888',
   background: '#fff',
@@ -30,10 +30,10 @@ export const signInWithGoogle = () => {
   signInWithPopup(provider)
 }
 
-const SignInWithGoogle = () => {
+const SignInWithGoogle: React.FC = () => {
   return (
     <button onClick={signInWithGoogle} css={style}>
-      <img className="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" />
+      <img className="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" height="18" />
       <span>Googleでログイン</span>
     </button>
   )

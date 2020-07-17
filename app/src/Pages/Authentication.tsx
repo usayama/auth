@@ -6,16 +6,13 @@ import { css } from '@emotion/core'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import SignInAnonymously from 'Components/SignInAnonymously'
 import SignInWithGoogle from 'Components/SignInWithGoogle'
+import SignInWithTwitter from 'Components/SignInWithTwitter'
+import SignInWithFacebook from 'Components/SignInWithFacebook'
+import SignInWithGithub from 'Components/SignInWithGithub'
 import SignOut from 'Components/SignOut'
 
 const style = css({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  width: '284px',
-  margin: '0 auto',
-  padding: '32px 0 17px',
-  borderRadius: '8px'
+  textAlign: 'center'
 })
 
 export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
@@ -32,12 +29,7 @@ const Authentication: React.FC = () => {
     signInSuccessUrl: '/Auth',
     signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-    signInOptions: [
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
+    signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
     callbacks: {
       signInSuccessWithAuthResult: (authResult: firebase.auth.UserCredential) => {
         if (authResult.user?.emailVerified) {
@@ -61,9 +53,27 @@ const Authentication: React.FC = () => {
   if (!user) {
     return (
       <div css={style}>
-        <SignInAnonymously />
-        <SignInWithGoogle />
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+        <ul>
+          <li>
+            <SignInAnonymously />
+          </li>
+          <li>
+            <SignInWithGoogle />
+          </li>
+          <li>
+            <SignInWithTwitter />
+          </li>
+          <li>
+            <SignInWithFacebook />
+          </li>
+          <li className="mb-6">
+            <SignInWithGithub />
+          </li>
+        </ul>
+        <div>または</div>
+        <div className="mt-6">
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+        </div>
       </div>
     )
   } else {
