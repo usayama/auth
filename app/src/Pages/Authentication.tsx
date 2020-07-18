@@ -5,10 +5,10 @@ import * as firebaseui from 'firebaseui'
 import { css } from '@emotion/core'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import SignInAnonymously from 'Components/SignInAnonymously'
-import SignInWithGoogle from 'Components/SignInWithGoogle'
-import SignInWithTwitter from 'Components/SignInWithTwitter'
-import SignInWithFacebook from 'Components/SignInWithFacebook'
-import SignInWithGithub from 'Components/SignInWithGithub'
+import SignInWithGoogle, { signInWithGoogle } from 'Components/SignInWithGoogle'
+import SignInWithTwitter, { signInWithTwitter } from 'Components/SignInWithTwitter'
+import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFacebook'
+import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
 import SignOut from 'Components/SignOut'
 
 const style = css({
@@ -17,9 +17,32 @@ const style = css({
 
 export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
   auth.signInWithPopup(provider).catch(error => {
-    console.log(error.log)
+    console.log(error.code)
     console.log(error.message)
+    console.log(error.email)
+    console.log(error.credential)
+    if (error.code === 'auth/account-exists-with-different-credential') {
+      signInWithExistCredential(error)
+    }
   })
+}
+
+const signInWithExistCredential = async (error: any) => {
+  const providers = await auth.fetchSignInMethodsForEmail(error.email)
+  const provider = providers[0]
+  if (window.confirm(`${error.email}はすでに認証アカウントが存在します。以前にお使いの${provider}の認証でログインしますか？`)) {
+    type signInObject = {
+      [key: string]: Function
+    }
+    const signInObject: signInObject = {
+      'google.com': signInWithGoogle,
+      'twitter.com': signInWithTwitter,
+      'facebook.com': signInWithFacebook,
+      'github.com': signInWithGithub
+    }
+    const signIn = signInObject[provider]
+    signIn()
+  }
 }
 
 const Authentication: React.FC = () => {
