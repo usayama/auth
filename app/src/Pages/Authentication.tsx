@@ -27,6 +27,18 @@ export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
   })
 }
 
+export const signInWithRedirect = (provider: firebase.auth.AuthProvider) => {
+  auth.signInWithRedirect(provider).catch(error => {
+    console.log(error.code)
+    console.log(error.message)
+    console.log(error.email)
+    console.log(error.credential)
+    if (error.code === 'auth/account-exists-with-different-credential') {
+      signInWithExistCredential(error)
+    }
+  })
+}
+
 const signInWithExistCredential = async (error: any) => {
   const providers = await auth.fetchSignInMethodsForEmail(error.email)
   const provider = providers[0]
