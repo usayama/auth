@@ -9,6 +9,7 @@ import SignInWithGoogle, { signInWithGoogle } from 'Components/SignInWithGoogle'
 import SignInWithTwitter, { signInWithTwitter } from 'Components/SignInWithTwitter'
 import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFacebook'
 import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
+import SignUp from 'Components/SignUp'
 import SignOut from 'Components/SignOut'
 
 const style = css({
@@ -64,7 +65,7 @@ const Authentication: React.FC = () => {
     signInSuccessUrl: '/Auth',
     signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-    signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+    signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID, firebase.auth.GithubAuthProvider.PROVIDER_ID, firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
       signInSuccessWithAuthResult: (authResult: firebase.auth.UserCredential) => {
         if (authResult.user?.emailVerified) {
@@ -105,7 +106,8 @@ const Authentication: React.FC = () => {
             <SignInWithGithub />
           </li>
         </ul>
-        <div>または</div>
+        <div className="mb-6">または</div>
+        <SignUp />
         <div className="mt-6">
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </div>
