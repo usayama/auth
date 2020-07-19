@@ -102,11 +102,11 @@ const Authentication: React.FC = () => {
           <li>
             <SignInWithFacebook />
           </li>
-          <li className="mb-6">
+          <li>
             <SignInWithGithub />
           </li>
         </ul>
-        <div className="mb-6">または</div>
+        <div className="mt-4 mb-4 text-sm">または</div>
         <SignUp />
         <div className="mt-6">
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
