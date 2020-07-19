@@ -26,16 +26,6 @@ export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
   })
 }
 
-export const signInWithRedirect = (provider: firebase.auth.AuthProvider) => {
-  auth.signInWithRedirect(provider).catch(error => {
-    console.log(error.code)
-    console.log(error.message)
-    if (error.code === 'auth/account-exists-with-different-credential') {
-      signInWithExistCredential(error)
-    }
-  })
-}
-
 const signInWithExistCredential = async (error: any) => {
   const providers = await auth.fetchSignInMethodsForEmail(error.email)
   const provider = providers[0]
@@ -54,11 +44,11 @@ const signInWithExistCredential = async (error: any) => {
   }
 }
 
-const Auth: React.FC = () => {
+const SignIn: React.FC = () => {
   const user = useContext(UserContext).user
 
   const uiConfig = {
-    signInSuccessUrl: '/Auth',
+    signInSuccessUrl: '/',
     signInFlow: 'popup',
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID, firebase.auth.GithubAuthProvider.PROVIDER_ID, firebase.auth.GoogleAuthProvider.PROVIDER_ID],
@@ -120,4 +110,4 @@ const Auth: React.FC = () => {
   }
 }
 
-export default Auth
+export default SignIn

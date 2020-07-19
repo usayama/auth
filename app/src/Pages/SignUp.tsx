@@ -76,7 +76,7 @@ const SignUp: React.FC = () => {
           <button type="submit">新規登録</button>
         </div>
         <p>
-          <Link to="Auth">ログインページへ</Link>
+          <Link to="SignIn">ログインページへ</Link>
         </p>
       </form>
     </div>
