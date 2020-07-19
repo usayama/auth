@@ -11,6 +11,7 @@ import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFac
 import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
 import SignInWithEmailAndPassword from 'Components/SignInWithEmailAndPassword'
 import { useSignOut } from 'Components/SignOut'
+import { queryAllByAttribute } from '@testing-library/react'
 
 const style = css({
   textAlign: 'center'
@@ -29,6 +30,10 @@ export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
 const signInWithExistCredential = async (error: any) => {
   const providers = await auth.fetchSignInMethodsForEmail(error.email)
   const provider = providers[0]
+  if (provider === 'password') {
+    alert(`${error.email}はすでに認証アカウントが存在します。メールアドレスとパスワードでの認証でログインしてください。`)
+    return
+  }
   if (window.confirm(`${error.email}はすでに認証アカウントが存在します。以前にお使いの${provider}の認証でログインしますか？`)) {
     type signInObject = {
       [key: string]: Function
