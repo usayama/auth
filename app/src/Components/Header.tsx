@@ -22,7 +22,7 @@ const Header: React.FC = () => {
         <Link to="/">Underflow</Link>
       </h1>
       <ul>
-        <li>{!user ? <Link to="Authentication">ログイン</Link> : <SignOut />}</li>
+        <li>{!user ? <Link to="Auth">ログイン</Link> : <SignOut />}</li>
       </ul>
     </header>
   )

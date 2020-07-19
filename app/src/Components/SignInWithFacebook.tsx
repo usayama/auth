@@ -1,7 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import { css } from '@emotion/core'
-import { signInWithPopup } from 'Pages/Authentication'
+import { signInWithPopup } from 'Pages/Auth'
 
 const style = css({
   display: 'inline-flex',

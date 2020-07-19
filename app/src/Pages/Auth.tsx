@@ -20,8 +20,6 @@ export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
   auth.signInWithPopup(provider).catch(error => {
     console.log(error.code)
     console.log(error.message)
-    console.log(error.email)
-    console.log(error.credential)
     if (error.code === 'auth/account-exists-with-different-credential') {
       signInWithExistCredential(error)
     }
@@ -32,8 +30,6 @@ export const signInWithRedirect = (provider: firebase.auth.AuthProvider) => {
   auth.signInWithRedirect(provider).catch(error => {
     console.log(error.code)
     console.log(error.message)
-    console.log(error.email)
-    console.log(error.credential)
     if (error.code === 'auth/account-exists-with-different-credential') {
       signInWithExistCredential(error)
     }
@@ -58,7 +54,7 @@ const signInWithExistCredential = async (error: any) => {
   }
 }
 
-const Authentication: React.FC = () => {
+const Auth: React.FC = () => {
   const user = useContext(UserContext).user
 
   const uiConfig = {
@@ -122,4 +118,4 @@ const Authentication: React.FC = () => {
   }
 }
 
-export default Authentication
+export default Auth
