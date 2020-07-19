@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-
 import firebase, { auth } from './firebase'
 import { UserContext } from 'contexts'
 import { css } from '@emotion/core'
-
 import Navigation from 'Components/Navigation'
 import Header from 'Components/Header'
 import Main from 'Components/Main'
