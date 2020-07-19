@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { auth } from '../firebase'
 import { css } from '@emotion/core'
 
@@ -30,19 +31,34 @@ const style = css({
     color: '#fff',
     borderRadius: '3px',
     marginTop: '24px'
+  },
+  p: {
+    marginTop: '16px',
+    fontSize: '14px',
+    textAlign: 'center',
+    a: {
+      textDecoration: 'underline'
+    }
   }
 })
 
 const SignUp: React.FC = () => {
+  const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const createUserWithEmailAndPassword = async (event: any) => {
+  const createUserWithEmailAndPassword = (event: any) => {
     event.preventDefault()
-    await auth.createUserWithEmailAndPassword(email, password).catch(error => {
-      console.log(error.code)
-      console.log(error.message)
-    })
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(response => {
+        console.log(response)
+        history.push('/')
+      })
+      .catch(error => {
+        console.log(error.code)
+        console.log(error.message)
+      })
   }
 
   return (
@@ -59,6 +75,9 @@ const SignUp: React.FC = () => {
         <div>
           <button type="submit">新規登録</button>
         </div>
+        <p>
+          <Link to="Auth">ログインページへ</Link>
+        </p>
       </form>
     </div>
   )

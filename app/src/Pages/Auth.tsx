@@ -9,7 +9,7 @@ import SignInWithGoogle, { signInWithGoogle } from 'Components/SignInWithGoogle'
 import SignInWithTwitter, { signInWithTwitter } from 'Components/SignInWithTwitter'
 import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFacebook'
 import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
-import SignUp from 'Components/SignUp'
+import SignInWithEmailAndPassword from 'Components/SignInWithEmailAndPassword'
 import SignOut from 'Components/SignOut'
 
 const style = css({
@@ -103,10 +103,12 @@ const Auth: React.FC = () => {
           </li>
         </ul>
         <div className="mt-4 mb-4 text-sm">または</div>
-        <SignUp />
-        <div className="mt-6">
-          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+        <div className="mb-8">
+          <SignInWithEmailAndPassword />
         </div>
+        {/* <div className="mt-6">
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+        </div> */}
       </div>
     )
   } else {

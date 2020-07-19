@@ -6,6 +6,7 @@ import Auth from 'Pages/Auth'
 import Profile from 'Pages/Profile'
 import Terms from 'Pages/Terms'
 import Privacy from 'Pages/Privacy'
+import SignUp from 'Pages/SignUp'
 
 const style = css({
   padding: '32px'
@@ -20,6 +21,7 @@ const Main: React.FC = () => {
         <Route path="/Profile" component={Profile} />
         <Route path="/Terms" component={Terms} />
         <Route path="/Privacy" component={Privacy} />
+        <Route path="/SignUp" component={SignUp} />
         <Route render={() => 'NotFound'} />
       </Switch>
     </main>
