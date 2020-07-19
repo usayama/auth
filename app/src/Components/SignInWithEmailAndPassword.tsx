@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { auth } from '../firebase'
 import { css } from '@emotion/core'
 
@@ -42,6 +42,7 @@ const style = css({
 })
 
 const SignInWithEmailAndPassword: React.FC = () => {
+  const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -51,6 +52,7 @@ const SignInWithEmailAndPassword: React.FC = () => {
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         console.log(response)
+        history.push('/')
       })
       .catch(error => {
         console.log(error.code)

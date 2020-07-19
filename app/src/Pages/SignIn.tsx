@@ -10,7 +10,7 @@ import SignInWithTwitter, { signInWithTwitter } from 'Components/SignInWithTwitt
 import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFacebook'
 import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
 import SignInWithEmailAndPassword from 'Components/SignInWithEmailAndPassword'
-import SignOut from 'Components/SignOut'
+import { useSignOut } from 'Components/SignOut'
 
 const style = css({
   textAlign: 'center'
@@ -102,12 +102,20 @@ const SignIn: React.FC = () => {
       </div>
     )
   } else {
-    return (
-      <div>
-        <SignOut />
-      </div>
-    )
+    return <LoggedIn />
   }
+}
+
+const LoggedIn = () => {
+  const signOut = useSignOut
+  return (
+    <div className="text-center">
+      <p>すでにログインしています</p>
+      <button className="mt-4 px-4 py-2 text-white bg-black rounded-sm" onClick={signOut()}>
+        ログアウト
+      </button>
+    </div>
+  )
 }
 
 export default SignIn
