@@ -11,7 +11,6 @@ import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFac
 import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
 import SignInWithEmailAndPassword from 'Components/SignInWithEmailAndPassword'
 import { useSignOut } from 'Components/SignOut'
-import { queryAllByAttribute } from '@testing-library/react'
 
 const style = css({
   textAlign: 'center'
