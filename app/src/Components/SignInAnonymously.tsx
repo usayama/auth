@@ -24,19 +24,18 @@ const style = css({
   }
 })
 
-export const signInAnonymously = async () => {
-  await auth.signInAnonymously().catch(error => {
-    console.log(error.code)
-    console.log(error.message)
-  })
-}
-
 export const useSignInAnonymously = () => {
   const history = useHistory()
-  return async () => {
-    await signInAnonymously()
-    history.push('/')
-  }
+  return () =>
+    auth
+      .signInAnonymously()
+      .then(() => {
+        history.push('/')
+      })
+      .catch(error => {
+        console.log(error.code)
+        console.log(error.message)
+      })
 }
 
 const SignInAnonymously: React.FC = () => {
