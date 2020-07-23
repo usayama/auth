@@ -46,6 +46,15 @@ const SignUp: React.FC = () => {
   const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  interface errorObjectType {
+    [key: string]: String
+  }
+  const errorObject: errorObjectType = {
+    'auth/email-already-in-use': '入力したメールアドレスのアカウントが既に存在します',
+    'auth/invalid-email': '有効なメールアドレスではありません',
+    'auth/weak-password': '弱いパスワードです。パスワードを再考してください。',
+    'auth/operation-not-allowed': 'メールパスワード認証自体が有効になっていません。これはサービス側の問題です。'
+  }
 
   const createUserWithEmailAndPassword = (event: any) => {
     event.preventDefault()
@@ -56,8 +65,7 @@ const SignUp: React.FC = () => {
         history.push('/')
       })
       .catch(error => {
-        console.log(error.code)
-        console.log(error.message)
+        alert(errorObject[error.code] || '未知のエラーに遭遇しました')
       })
   }
 

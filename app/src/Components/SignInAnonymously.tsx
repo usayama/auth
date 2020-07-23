@@ -2,26 +2,12 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { auth } from '../firebase'
 import { css } from '@emotion/core'
+import { styleSignInButton } from 'styles'
 
-const style = css({
-  display: 'inline-flex',
-  alignItems: 'center',
-  padding: '0 16px',
-  background: '#f4b400',
-  width: '100%',
-  maxWidth: '232px',
-  minHeight: '40px',
-  border: 'none',
+const style = css(styleSignInButton, {
   color: '#fff',
-  fontSize: '13px',
-  fontWeight: 'bold',
-  borderRadius: '2px',
-  boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
-  outline: 'none',
-  cursor: 'pointer',
-  span: {
-    marginLeft: '16px'
-  }
+  background: '#f4b400',
+  fontWeight: 'bold'
 })
 
 export const useSignInAnonymously = () => {

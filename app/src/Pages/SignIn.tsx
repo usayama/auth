@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import firebase, { auth } from '../firebase'
 import { UserContext } from 'contexts'
 import * as firebaseui from 'firebaseui'
 import { css } from '@emotion/core'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import SignInAnonymously from 'Components/SignInAnonymously'
-import SignInWithGoogle, { signInWithGoogle } from 'Components/SignInWithGoogle'
-import SignInWithTwitter, { signInWithTwitter } from 'Components/SignInWithTwitter'
-import SignInWithFacebook, { signInWithFacebook } from 'Components/SignInWithFacebook'
-import SignInWithGithub, { signInWithGithub } from 'Components/SignInWithGithub'
+import SignInWithGoogle from 'Components/SignInWithGoogle'
+import SignInWithTwitter from 'Components/SignInWithTwitter'
+import SignInWithFacebook from 'Components/SignInWithFacebook'
+import SignInWithGithub from 'Components/SignInWithGithub'
 import SignInWithEmailAndPassword from 'Components/SignInWithEmailAndPassword'
 import { useSignOut } from 'Components/SignOut'
 
@@ -16,35 +17,30 @@ const style = css({
   textAlign: 'center'
 })
 
-export const signInWithPopup = (provider: firebase.auth.AuthProvider) => {
-  auth.signInWithPopup(provider).catch(error => {
-    console.log(error.code)
-    console.log(error.message)
-    if (error.code === 'auth/account-exists-with-different-credential') {
-      signInWithExistCredential(error)
-    }
-  })
+export const useSignInWithPopup = (provider: firebase.auth.AuthProvider) => {
+  const history = useHistory()
+  return () =>
+    auth
+      .signInWithPopup(provider)
+      .then(() => {
+        history.push('/')
+      })
+      .catch(error => {
+        console.log(error.code)
+        console.log(error.message)
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          signInWithExistCredential(error)
+        }
+      })
 }
 
-const signInWithExistCredential = async (error: any) => {
+export const signInWithExistCredential = async (error: any) => {
   const providers = await auth.fetchSignInMethodsForEmail(error.email)
   const provider = providers[0]
   if (provider === 'password') {
     alert(`${error.email}はすでに認証アカウントが存在します。メールアドレスとパスワードでの認証でログインしてください。`)
-    return
-  }
-  if (window.confirm(`${error.email}はすでに認証アカウントが存在します。以前にお使いの${provider}の認証でログインしますか？`)) {
-    type signInObject = {
-      [key: string]: Function
-    }
-    const signInObject: signInObject = {
-      'google.com': signInWithGoogle,
-      'twitter.com': signInWithTwitter,
-      'facebook.com': signInWithFacebook,
-      'github.com': signInWithGithub
-    }
-    const signIn = signInObject[provider]
-    signIn()
+  } else {
+    alert(`${error.email}はすでに認証アカウントが存在します。以前にお使いの${provider}の認証でログインしてください。`)
   }
 }
 
