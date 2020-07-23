@@ -1,50 +1,14 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { auth } from '../firebase'
 import { css } from '@emotion/core'
+import { styleAuthForm } from 'styles'
 
-const style = css({
+const style = css(styleAuthForm, {
   h1: {
-    marginBottom: '24px',
+    marginBottom: '32px',
     fontSize: '20px',
     textAlign: 'center'
-  },
-  form: {
-    width: '100%',
-    maxWidth: '232px',
-    margin: '0 auto',
-    padding: '16px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    background: '#f8f8f8'
-  },
-  label: {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '14px'
-  },
-  input: {
-    border: '1px solid #ccc',
-    width: '100%',
-    height: '40px',
-    borderRadius: '3px',
-    padding: '0 0 0 12px'
-  },
-  button: {
-    appearance: 'none',
-    width: '100%',
-    height: '40px',
-    background: '#000',
-    color: '#fff',
-    borderRadius: '3px',
-    marginTop: '24px'
-  },
-  p: {
-    marginTop: '16px',
-    fontSize: '14px',
-    textAlign: 'center',
-    a: {
-      textDecoration: 'underline'
-    }
   }
 })
 
@@ -80,10 +44,13 @@ const PasswordReset: React.FC = () => {
       <h1>パスワード再設定</h1>
       <form onSubmit={unko}>
         <label>メールアドレス</label>
-        <input type="email" placeholder="メールアドレスを入力" value={email} onChange={event => setEmail(event.target.value)} />
+        <input type="email" name="email" autoComplete="email" placeholder="メールアドレスを入力" value={email} onChange={event => setEmail(event.target.value)} />
         <div>
           <button type="submit">再設定用リンクを送信</button>
         </div>
+        <p className="mt-4 text-center">
+          <Link to="/SignIn">ログイン</Link>
+        </p>
       </form>
     </div>
   )
