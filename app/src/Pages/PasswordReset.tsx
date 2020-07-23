@@ -51,30 +51,27 @@ const style = css({
 const PasswordReset: React.FC = () => {
   const [email, setEmail] = useState('')
 
-  type errorObjectType = {
-    [key: string]: String
-  }
-
-  const errorObject: errorObjectType = {
-    'auth/invalid-email': '有効なメールアドレスではありません。',
-    'auth/user-not-found': 'このメールアドレスのユーザーは存在しません',
-    'auth/missing-android-pkg-name': '【サービス側の原因】Androidアプリのインストールが必要な場合は、Androidパッケージ名を指定する必要があります。',
-    'auth/missing-continue-uri': '【サービス側の原因】リクエストにはcontinue URLを指定しなければなりません。',
-    'auth/missing-ios-bundle-id': '【サービス側の原因】App Store IDが提供されている場合は、iOS Bundle IDを提供する必要があります。',
-    'auth/invalid-continue-uri': '【サービス側の原因】リクエストで提供されたcontinue URLは無効です。',
-    'auth/unauthorized-continue-uri': '【サービス側の原因】continue URLのドメインがホワイトリストに登録されていません。Firebaseコンソールでドメインをホワイトリスト化します。'
-  }
-
   const unko = (event: any) => {
     event.preventDefault()
-    console.log(email)
     auth
       .sendPasswordResetEmail(email)
       .then(() => {
         alert(`${email}宛にメールを送信しました。メール内のリンクからパスワードを再設定してください。`)
       })
       .catch(error => {
-        alert(errorObject[error.code] || '未知のエラーに遭遇しました')
+        switch (error.code) {
+          case 'auth/invalid-email':
+            alert('有効なメールアドレスではありません。')
+            break
+          case 'auth/user-not-found':
+            alert('このメールアドレスのユーザーは存在しません。')
+            break
+          default:
+            alert('サービス側が原因のエラーです。')
+            console.log(error.code)
+            console.log(error.message)
+            break
+        }
       })
   }
 

@@ -33,7 +33,6 @@ const style = css({
     marginTop: '24px'
   },
   p: {
-    marginTop: '16px',
     fontSize: '14px',
     a: {
       textDecoration: 'underline'
@@ -83,8 +82,10 @@ const SignInWithEmailAndPassword: React.FC = () => {
         <div>
           <button type="submit">ログイン</button>
         </div>
-        <p>
-          <Link to="SignUp">アカウントの新規登録ページへ</Link>
+        <p className="mt-4 mb-1">
+          <Link to="SignUp">新規登録</Link>
+          <span className="ml-1 mr-1">｜</span>
+          <Link to="PasswordReset">パスワード再設定</Link>
         </p>
       </form>
     </div>
