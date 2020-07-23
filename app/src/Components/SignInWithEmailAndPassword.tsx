@@ -46,6 +46,16 @@ const SignInWithEmailAndPassword: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  type errorObjectType = {
+    [key: string]: String
+  }
+  const errorObject: errorObjectType = {
+    'auth/invalid-email': '有効なメールアドレスではありません',
+    'auth/user-disabled': 'このメールアドレスのユーザーは無効化されています',
+    'auth/user-not-found': 'このメールアドレスのユーザは存在しません',
+    'auth/wrong-password': 'パスワードが間違っています'
+  }
+
   const signInWithEmailAndPassword = (event: any) => {
     event.preventDefault()
     auth
@@ -55,8 +65,7 @@ const SignInWithEmailAndPassword: React.FC = () => {
         history.push('/')
       })
       .catch(error => {
-        console.log(error.code)
-        console.log(error.message)
+        alert(errorObject[error.code] || '未知のエラーに遭遇しました')
       })
   }
 

@@ -46,6 +46,7 @@ const SignUp: React.FC = () => {
   const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   type errorObjectType = {
     [key: string]: String
   }
