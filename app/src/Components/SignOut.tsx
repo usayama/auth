@@ -1,7 +1,19 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { auth } from '../firebase'
+import { css } from '@emotion/core'
 import { UserContext } from 'contexts'
+
+const style = css({
+  border: '1px solid #fff',
+  borderRadius: '2px',
+  width: '96px',
+  height: '32px',
+  fontSize: '14px',
+  '&:focus': {
+    outline: 'none'
+  }
+})
 
 export const useSignOut = () => {
   const user = useContext(UserContext).user
@@ -28,7 +40,11 @@ export const useSignOut = () => {
 }
 
 const SignOut: React.FC = () => {
-  return <button onClick={useSignOut()}>ログアウト</button>
+  return (
+    <button css={style} onClick={useSignOut()}>
+      ログアウト
+    </button>
+  )
 }
 
 export default SignOut
