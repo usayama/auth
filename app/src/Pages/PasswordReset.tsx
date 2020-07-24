@@ -6,7 +6,7 @@ import { styleAuthForm } from 'styles'
 
 const style = css(styleAuthForm, {
   h1: {
-    marginBottom: '32px',
+    marginBottom: '24px',
     fontSize: '20px',
     textAlign: 'center'
   }

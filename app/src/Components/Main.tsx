@@ -10,7 +10,7 @@ import SignUp from 'Pages/SignUp'
 import PasswordReset from 'Pages/PasswordReset'
 
 const style = css({
-  padding: '32px'
+  padding: '24px'
 })
 
 const Main: React.FC = () => {

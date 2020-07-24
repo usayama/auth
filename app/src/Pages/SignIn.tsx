@@ -43,7 +43,7 @@ const SignIn: React.FC = () => {
   if (!user) {
     return (
       <div>
-        <h1 className="mb-3 text-center text-xl">ログイン</h1>
+        <h1 className="mb-2 text-center text-xl">ログイン</h1>
         <ul className="text-center">
           <li>
             <SignInAnonymously />
