@@ -2,7 +2,7 @@ import React from 'react'
 import firebase from '../../firebase'
 import { css } from '@emotion/core'
 import { useSignInWithPopup } from 'Auth/Pages/SignIn'
-import { styleSignInButton } from 'styles'
+import { styleSignInButton } from 'Styles/styles'
 
 const style = css(styleSignInButton, {
   color: '#fff',

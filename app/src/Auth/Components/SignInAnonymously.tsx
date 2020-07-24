@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { css } from '@emotion/core'
-import { styleSignInButton } from 'styles'
+import { styleSignInButton } from 'Styles/styles'
 
 const style = css(styleSignInButton, {
   color: '#fff',

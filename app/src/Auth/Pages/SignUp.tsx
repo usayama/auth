@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { css } from '@emotion/core'
-import { styleAuthForm } from 'styles'
+import { styleAuthForm } from 'Styles/styles'
 
 const style = css(styleAuthForm, {
   h1: {
