@@ -14,7 +14,7 @@ const style = css({
   background: '#666'
 })
 
-const buttonStyle = css({
+const styleButton = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -46,7 +46,7 @@ const Header: React.FC = () => {
         <li className="ml-4">
           {!user ? (
             <Link to="SignIn">
-              <span css={buttonStyle}>ログイン</span>
+              <span css={styleButton}>ログイン</span>
             </Link>
           ) : (
             <SignOut />
