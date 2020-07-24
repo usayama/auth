@@ -1,11 +1,11 @@
 import React from 'react'
 
-interface Props {
+type typeProps = {
   name: String
 }
 
 const Home: React.FC = () => {
-  const name = 'うさ山'
+  const name = 'テスト太郎'
   return (
     <div>
       トップページ
@@ -14,8 +14,8 @@ const Home: React.FC = () => {
   )
 }
 
-const Usayama: React.FC<Props> = props => {
-  return <div>せーの {props.name}！</div>
+const Usayama: React.FC<typeProps> = props => {
+  return <div>Propsの記述テストです。名前は {props.name} です。</div>
 }
 
 export default Home
