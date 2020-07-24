@@ -31,10 +31,10 @@ echo '作成と書き込みが完了しました'
 wait $!
 
 sleep 3
-echo 'styles.cssを作成して書き込みます'
-touch app/src/styles.css
+echo 'tailwind-import.cssを作成して書き込みます'
+touch app/src/tailwind-import.css
 wait
-cat << 'EOS' > app/src/styles.css
+cat << 'EOS' > app/src/tailwind-import.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,7 +44,7 @@ wait $!
 
 sleep 3
 echo 'package.json から build の行を探して、下に行を挿入します'
-gsed -i '/"test":/a \    "tailwind": "npx tailwindcss build src/styles.css -o src/tailwind.css",' app/package.json
+gsed -i '/"test":/a \    "tailwind": "npx tailwindcss build src/tailwind-import.css -o src/tailwind.css",' app/package.json
 echo '行の挿入が完了しました'
 wait $!
 
