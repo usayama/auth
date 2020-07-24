@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import firebase, { auth } from '../firebase'
+import firebase, { auth } from '../../firebase'
 import { UserContext } from 'contexts'
-import SignInAnonymously from 'Components/SignInAnonymously'
-import SignInWithGoogle from 'Components/SignInWithGoogle'
-import SignInWithTwitter from 'Components/SignInWithTwitter'
-import SignInWithFacebook from 'Components/SignInWithFacebook'
-import SignInWithGithub from 'Components/SignInWithGithub'
-import SignInWithEmailAndPassword from 'Components/SignInWithEmailAndPassword'
-import { useSignOut } from 'Components/SignOut'
+import SignInAnonymously from 'Auth/Components/SignInAnonymously'
+import SignInWithGoogle from 'Auth/Components/SignInWithGoogle'
+import SignInWithTwitter from 'Auth/Components/SignInWithTwitter'
+import SignInWithFacebook from 'Auth/Components/SignInWithFacebook'
+import SignInWithGithub from 'Auth/Components/SignInWithGithub'
+import SignInWithEmailAndPassword from 'Auth/Components/SignInWithEmailAndPassword'
+import { useSignOut } from 'Auth/Components/SignOut'
 
 export const useSignInWithPopup = (provider: firebase.auth.AuthProvider) => {
   const history = useHistory()

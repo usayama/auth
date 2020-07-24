@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
 import { css } from '@emotion/core'
 import { UserContext } from 'contexts'
 

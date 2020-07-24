@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { css } from '@emotion/core'
-import SignOut from 'Components/SignOut'
+import SignOut from 'Auth/Components/SignOut'
 import { UserContext } from 'contexts'
 
 const style = css({
