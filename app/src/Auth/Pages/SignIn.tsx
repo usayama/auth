@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import firebase, { auth } from '../../firebase'
+import firebase, { auth, db } from '../../firebase'
 import { UserContext } from 'contexts'
 import SignInAnonymously from 'Auth/Components/SignInAnonymously'
 import SignInWithGoogle from 'Auth/Components/SignInWithGoogle'
@@ -15,6 +15,13 @@ export const useSignInWithPopup = (provider: firebase.auth.AuthProvider) => {
   return () =>
     auth
       .signInWithPopup(provider)
+      .then(result => {
+        db.collection('users').doc(result.user?.uid).set({
+          email: result.user?.email,
+          displayName: result.user?.displayName,
+          photoURL: result.user?.photoURL
+        })
+      })
       .then(() => {
         history.push('/')
       })
