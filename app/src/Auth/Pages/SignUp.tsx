@@ -16,6 +16,7 @@ const SignUp: React.FC = () => {
   const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [displayName, setDisplayName] = useState('')
 
   type errorObjectType = {
     [key: string]: String
@@ -31,6 +32,12 @@ const SignUp: React.FC = () => {
     event.preventDefault()
     auth
       .createUserWithEmailAndPassword(email, password)
+      .then(response => {
+        response.user?.updateProfile({
+          displayName: displayName || 'null太郎',
+          photoURL: '/images/icon_user_default.png'
+        })
+      })
       .then(() => {
         const actionCodeSettings = {
           url: window.location.origin + '/'
@@ -54,11 +61,15 @@ const SignUp: React.FC = () => {
       <form onSubmit={createUserWithEmailAndPassword}>
         <div>
           <label>メールアドレス</label>
-          <input type="email" name="email" placeholder="you@example.com" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} />
+          <input type="email" required name="email" placeholder="you@example.com" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} />
         </div>
         <div className="mt-2">
           <label>パスワード</label>
-          <input type="password" name="password" placeholder="パスワード" value={password} onChange={event => setPassword(event.target.value)} />
+          <input type="password" required name="password" placeholder="パスワード" value={password} onChange={event => setPassword(event.target.value)} />
+        </div>
+        <div className="mt-2">
+          <label>表示名</label>
+          <input type="displayName" required name="displayName" placeholder="名前太郎" autoComplete="displayName" value={displayName} onChange={event => setDisplayName(event.target.value)} />
         </div>
         <div>
           <button type="submit">新規登録</button>
