@@ -30,7 +30,6 @@ const styleButton = css({
 
 const Header: React.FC = () => {
   const user = useContext(UserContext).user
-  const icon = user?.photoURL ?? user?.photoURL
   return (
     <header css={style}>
       <h1>
@@ -39,7 +38,8 @@ const Header: React.FC = () => {
       <ul className="flex items-center">
         {user && !user.isAnonymous ? (
           <li className="flex items-center">
-            <img className="rounded" src={icon || undefined} alt="" width="32" />
+            <img className="rounded" src={user?.photoURL || undefined} alt="" width="32" />
+            <div className="ml-2 text-sm">{user?.displayName}</div>
             <div className="ml-2 text-sm">{user?.email}</div>
           </li>
         ) : null}
