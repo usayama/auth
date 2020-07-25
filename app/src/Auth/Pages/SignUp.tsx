@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { auth } from '../../firebase'
+import { auth, db } from '../../firebase'
 import { css } from '@emotion/core'
 import { styleAuthForm } from 'Auth/Styles/styles'
 
@@ -28,31 +28,35 @@ const SignUp: React.FC = () => {
     'auth/operation-not-allowed': 'メールパスワード認証自体が有効になっていません。これはサービス側の問題です。'
   }
 
-  const createUserWithEmailAndPassword = (event: any) => {
+  const createUserWithEmailAndPassword = async (event: any) => {
     event.preventDefault()
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(response => {
-        response.user?.updateProfile({
-          displayName: displayName || 'null太郎',
-          photoURL: '/images/icon_user_default.png'
-        })
-      })
-      .then(() => {
-        const actionCodeSettings = {
-          url: window.location.origin + '/'
-        }
-        auth.currentUser?.sendEmailVerification(actionCodeSettings)
-      })
-      .then(() => {
-        alert('確認メールを送信しました。メール内のURLからサインインしなおしてください。')
-      })
-      .then(() => {
-        history.push('/')
-      })
-      .catch(error => {
-        alert(errorObject[error.code] || 'エラーが発生しました')
-      })
+    const actionCodeSettings = {
+      url: window.location.origin + '/'
+    }
+    // メール＆パスワードのアカウントを作成し、レスポンスを変数に格納
+    const result = await auth.createUserWithEmailAndPassword(email, password).catch(error => {
+      alert(errorObject[error.code] || 'エラーが発生しました')
+    })
+    // レスポンスがなければ以降の処理は行わない
+    if (!result) {
+      return
+    }
+    // 名前とアイコンURLをAuthに登録
+    await result.user?.updateProfile({
+      displayName: displayName || 'null太郎',
+      photoURL: '/images/icon_user_default.png'
+    })
+    // ユーザ情報をFireStoreにも登録
+    await db.collection('users').doc(result.user?.uid).set({
+      email: result.user?.email,
+      displayName: result.user?.displayName,
+      photoURL: result.user?.photoURL
+    })
+    // 存在確認メールを送る
+    await auth.currentUser?.sendEmailVerification(actionCodeSettings)
+    alert('確認メールを送信しました。メール内のURLからサインインしなおしてください。')
+    // トップページへ移動
+    history.push('/')
   }
 
   return (
